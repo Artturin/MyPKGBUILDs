@@ -1,0 +1,36 @@
+# This is an example PKGBUILD file. Use this as a start to creating your own,
+# and remove these comments. For more information, see 'man PKGBUILD'.
+# NOTE: Please fill out the license field for your package! If it is unknown,
+# then please put 'unknown'.
+
+# Maintainer: Leo_L <Leo dot Lahtinen at protonmail dot com
+pkgname=vlc-libde265
+pkgver=0.1.7
+pkgrel=1
+pkgdesc=""
+arch=(any)
+url="https://github.com/strukturag/vlc-libde265"
+license=('LGPL')
+depends=()
+makedepends=('vlc-git' 'libde265' 'libebml' 'libmatroska' 'libdvbpsi-git')
+optdepends=()
+provides=()
+source=("https://github.com/strukturag/vlc-libde265/releases/download/$pkgver/vlc-libde265-$pkgver.tar.gz")
+md5sums=('43d744351088a38b37d6c990aea283f9')
+
+
+build() {
+	cd "$pkgname-$pkgver"
+	./configure --prefix=/usr
+	make
+}
+
+check() {
+	cd "$pkgname-$pkgver"
+	make -k check
+}
+
+package() {
+	cd "$pkgname-$pkgver"
+	make DESTDIR="$pkgdir/" install
+}
