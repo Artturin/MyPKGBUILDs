@@ -1,0 +1,38 @@
+# Maintainer: Leo_L <Leo dot Lahtinen at protonmail dot com>
+pkgname=vimiv-qt-git
+_pkgname=vimiv-qt
+__pkgname=vimiv
+pkgver=r1214.6bd47ba
+pkgrel=1
+pkgdesc=""
+arch=(x86_64)
+url="https://github.com/karlch/vimiv-qt"
+license=('GPL')
+depends=('python-setuptools' 'python-pyqt5')
+optdepends=('python-piexif: for exif support'
+            'qt5-svg: for svg support')
+makedepends=('git')
+provides=("$_pkgname" "$__pkgname")
+conflicts=("$_pkgname" "$__pkgname")
+replaces=()
+backup=()
+options=()
+install=
+source=('git+https://github.com/karlch/vimiv-qt.git')
+noextract=()
+md5sums=('SKIP')
+
+pkgver() {
+	cd "$srcdir/${_pkgname}"
+	printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+prepare() {
+	cd "$srcdir/$_pkgname"
+    cp "misc/Makefile" "$srcdir/$_pkgname/"
+}
+
+package() {
+	cd "$srcdir/$_pkgname"
+	make DESTDIR="$pkgdir/" install
+}
