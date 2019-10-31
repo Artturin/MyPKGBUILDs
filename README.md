@@ -3,6 +3,14 @@ PKGBUILDs i've written
 
 
 
+Submit a issue for requests
+
+
+
+
+
+
+
 ## Finished
 - google-docs-nativefier
 - google-drive-nativefier
@@ -10,5 +18,3 @@ PKGBUILDs i've written
 
 
 ## Unfinished
-- vlc-libde265
-
