@@ -15,6 +15,7 @@ Submit a issue for requests
 - google-docs-nativefier
 - google-drive-nativefier
 - viscord_python
+- vimiv-qt
 
 
 ## Unfinished
