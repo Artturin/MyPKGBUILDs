@@ -1,0 +1,29 @@
+# Maintainer: Leo_L <Leo dot Lahtinen at protonmail dot com>
+pkgname=viscord-git
+_pkgname=viscord-rs
+pkgver=r3.3a8d537
+pkgrel=1
+pkgdesc="Terminal Discord client with vim keybinds written in rust"
+arch=(x86_64)
+url="https://github.com/thegergo02/viscord-rs"
+license=('GPL')
+depends=()
+makedepends=("git" "rust")
+provides=("viscord")
+conflicts=("viscord")
+source=("git+https://github.com/thegergo02/viscord-rs.git")
+md5sums=(SKIP)
+
+pkgver() {
+    cd "${srcdir}/${_pkgname}"
+    printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+build() {
+    cd "${srcdir}/${_pkgname}" 
+    cargo build --release --locked
+}
+
+package() {
+    install -Dm 755 "${srcdir}/${_pkgname}/target/release/${_pkgname}" -t "${pkgdir}/usr/bin"
+}
